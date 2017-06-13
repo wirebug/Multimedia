@@ -40,7 +40,12 @@ public class Shoot : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, MaxRange))
         {
             line.SetPosition(1, hit.point);
-            //todo
+
+            EnemyBehaviour enemy = hit.collider.GetComponent<EnemyBehaviour>();
+            if (enemy != null)
+            {
+                enemy.Hit(34);
+            }
         }
         else
         {
