@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/default.unity
     guid: 307f8be997f5391498751419088a37b1
+  - enabled: 1
+    path: Assets/World.unity
+    guid: 7866f23de1bb49540a05f70ff12edad1
