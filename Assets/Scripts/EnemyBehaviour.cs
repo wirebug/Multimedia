@@ -27,5 +27,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+
+        SpawnScript.enemiesAlives--;
     }
 }
