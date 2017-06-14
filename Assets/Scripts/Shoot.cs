@@ -25,31 +25,38 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time > canShootAgainTime)
         {
+            if (!IsBackButtonClicked())
+            {
                 Fire();
+            }
         }
     }
 
     private bool IsBackButtonClicked()
     {
-        GameObject backButton = GameObject.FindGameObjectWithTag("BackButton");
-        RectTransform backButtonRt = (RectTransform)backButton.transform;
-        Vector3 middle = backButtonRt.position;
-        Vector2 size = new Vector2(backButtonRt.rect.width, backButtonRt.rect.height);
-        float halfWidth = size.x / 2.0f;
-        float halfHeight = size.y / 2.0f;
-        Vector2 backButtonTopLeft = new Vector2(middle.x - halfWidth, middle.y + halfHeight);
-        Vector2 backButtonBottomRight = new Vector2(middle.x + halfWidth, middle.y - halfHeight);
+        GameObject[] backButtons = GameObject.FindGameObjectsWithTag("BackButton");
 
-        Vector3 mousePos = Input.mousePosition;
-
-        if (
-                mousePos.x >= backButtonTopLeft.x &&
-                mousePos.x <= backButtonBottomRight.x &&
-                mousePos.y <= backButtonTopLeft.y &&
-                mousePos.y >= backButtonBottomRight.y
-            )
+        foreach (GameObject backButton in backButtons)
         {
-            return true;
+            RectTransform backButtonRt = (RectTransform)backButton.transform;
+            Vector3 middle = backButtonRt.position;
+            Vector2 size = new Vector2(backButtonRt.rect.width, backButtonRt.rect.height);
+            float halfWidth = size.x / 2.0f;
+            float halfHeight = size.y / 2.0f;
+            Vector2 backButtonTopLeft = new Vector2(middle.x - halfWidth, middle.y + halfHeight);
+            Vector2 backButtonBottomRight = new Vector2(middle.x + halfWidth, middle.y - halfHeight);
+
+            Vector3 mousePos = Input.mousePosition;
+
+            if (
+                    mousePos.x >= backButtonTopLeft.x &&
+                    mousePos.x <= backButtonBottomRight.x &&
+                    mousePos.y <= backButtonTopLeft.y &&
+                    mousePos.y >= backButtonBottomRight.y
+                )
+            {
+                return true;
+            }
         }
 
         return false;
