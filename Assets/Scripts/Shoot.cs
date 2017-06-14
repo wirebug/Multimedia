@@ -25,10 +25,7 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time > canShootAgainTime)
         {
-            if (!IsBackButtonClicked())
-            {
                 Fire();
-            }
         }
     }
 
