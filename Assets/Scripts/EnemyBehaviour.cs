@@ -22,8 +22,10 @@ public class EnemyBehaviour : MonoBehaviour {
         GetComponent<Renderer>().enabled = false;
 
         //Todo: Play some destruction animation
-        //wait before destroy so effects are played correctly
-        yield return new WaitForSeconds(0.5f);
+
+        ScoreLogic.Score++;
+
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
 
         SpawnScript.enemiesAlives--;
