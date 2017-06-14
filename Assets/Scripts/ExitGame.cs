@@ -7,7 +7,7 @@ public class ExitGame : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Application.platform == RuntimePlatform.Android && Input.GetKey(KeyCode.Escape))
+        if (((Application.platform == RuntimePlatform.Android) || !Application.isMobilePlatform) && Input.GetKey(KeyCode.Escape))
         {
             if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("default"))
             {
