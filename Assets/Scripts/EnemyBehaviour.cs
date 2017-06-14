@@ -23,7 +23,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
         //Todo: Play some destruction animation
 
-        ScoreLogic.Score++;
+        ScoreLogic.LastScore++;
 
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
