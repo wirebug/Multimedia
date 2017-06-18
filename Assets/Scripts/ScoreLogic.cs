@@ -50,12 +50,9 @@ public class ScoreLogic : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         timeLeft -= Time.deltaTime;
-
-        LastScore++; // TODO: TEST ONLY, REMOVE!
         
         if (timeLeft <= 0)
         {
-            //TODO Finish
             SceneManager.LoadScene("StartMenu");
         }
 	}
