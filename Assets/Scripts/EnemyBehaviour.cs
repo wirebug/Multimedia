@@ -21,7 +21,8 @@ public class EnemyBehaviour : MonoBehaviour {
         // Dont show anymore
         GetComponent<Renderer>().enabled = false;
 
-        //Todo: Play some destruction animation
+        //Play Destruction Animation
+        GetComponentInChildren<ParticleSystem>().Play();
 
         ScoreLogic.LastScore++;
 
