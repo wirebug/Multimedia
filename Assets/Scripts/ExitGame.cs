@@ -9,7 +9,10 @@ public class ExitGame : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("World"))
+            if (
+                SceneManager.GetActiveScene() == SceneManager.GetSceneByName("default") ||
+                SceneManager.GetActiveScene() == SceneManager.GetSceneByName("World")
+               )
             {
                 SceneManager.LoadScene("StartMenu");
             }

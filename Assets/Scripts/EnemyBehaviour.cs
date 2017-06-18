@@ -22,9 +22,10 @@ public class EnemyBehaviour : MonoBehaviour {
         // Dont show anymore
         GetComponent<Renderer>().enabled = false;
 
-        //Todo: Play some destruction animation
+        //Play Destruction Animation
+        GetComponentInChildren<ParticleSystem>().Play();
 
-        ScoreLogic.Score++;
+        ScoreLogic.LastScore++;
 
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
