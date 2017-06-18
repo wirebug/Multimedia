@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public void Hit(int damage)
     {
         Health -= damage;
-        //Todo: Play some hit animation
+        
         if (Health <= 0)
         {
             StartCoroutine(DestroySelf());

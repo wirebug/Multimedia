@@ -79,6 +79,12 @@ public class Shoot : MonoBehaviour
             if (enemy != null)
             {
                 enemy.Hit(34);
+                var laserhit = GetComponentInChildren<ParticleSystem>();
+                if (laserhit != null)
+                {
+                    laserhit.transform.position = line.GetPosition(1);
+                    laserhit.Play();
+                }
             }
         }
         else
