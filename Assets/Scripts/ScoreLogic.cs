@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,8 +13,8 @@ public class ScoreLogic : MonoBehaviour {
     {
         get { return timeLeft; }
     }
-    private static string lastScoreFilePath = Application.persistentDataPath + "/lastScore.txt";
-    private static string highScoreFilePath = Application.persistentDataPath + "/highScore.txt";
+    private static string lastScoreFileName =  "lastScore.txt";
+    private static string highScoreFileName = "highScore.txt";
 
     public static void Init()
     {
@@ -72,13 +73,14 @@ public class ScoreLogic : MonoBehaviour {
     private static void SerializeScores()
     {
         using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(lastScoreFilePath))
+
+            new System.IO.StreamWriter(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
         {
             file.WriteLine(LastScore);
         }
 
         using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(highScoreFilePath))
+            new System.IO.StreamWriter(Path.Combine(Application.persistentDataPath, highScoreFileName)))
         {
             file.WriteLine(HighScore);
         }
@@ -86,10 +88,10 @@ public class ScoreLogic : MonoBehaviour {
 
     private static void DeSerializeScores()
     {
-        if (IsFileValid(lastScoreFilePath))
+        if (IsFileValid(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
         {
             using (System.IO.StreamReader file =
-                new System.IO.StreamReader(lastScoreFilePath))
+                new System.IO.StreamReader(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
             {
                 string lastScoreString = file.ReadLine();
                 int lastScoreValue = 0;
@@ -101,10 +103,10 @@ public class ScoreLogic : MonoBehaviour {
             }
         }
 
-        if (IsFileValid(highScoreFilePath))
+        if (IsFileValid(Path.Combine(Application.persistentDataPath, highScoreFileName)))
         {
             using (System.IO.StreamReader file =
-                new System.IO.StreamReader(highScoreFilePath))
+                new System.IO.StreamReader(Path.Combine(Application.persistentDataPath, highScoreFileName)))
             {
                 string highScoreString = file.ReadLine();
                 int highScoreValue = 0;
@@ -119,7 +121,7 @@ public class ScoreLogic : MonoBehaviour {
 
     private static bool IsFileValid(string filePath)
     {
-        if (!System.IO.File.Exists(filePath))
+        if (File.Exists(filePath))
         {
             return false;
         }
