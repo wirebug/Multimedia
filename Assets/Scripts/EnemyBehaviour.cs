@@ -8,7 +8,8 @@ public class EnemyBehaviour : MonoBehaviour {
     public int Health = 100;
 
     public float MovementSpeed = 4f;
-    public Transform[] Waypoints;
+    public string MoveAlong = "Path1";
+    private Transform[] Waypoints;
 
     [HideInInspector]
     public int currentWayPoint = 0;
@@ -18,7 +19,15 @@ public class EnemyBehaviour : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        var path = GameObject.Find(MoveAlong);
+        if (path != null)
+        {
+            Waypoints = new Transform[path.transform.childCount];
+            for (int i = 0; i < Waypoints.Length; i++)
+            {
+                Waypoints[i] = path.transform.GetChild(i);
+            }
+        }
     }
 
     // Update is called once per frame
