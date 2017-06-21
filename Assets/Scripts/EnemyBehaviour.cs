@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public int scoreOnHit = 5;
     public int scoreOnDestroy = 30;
     public float MovementSpeed = 4.0f;
+    public bool MovementEnabled = true;
     public string MoveAlong = "Path1";
     [HideInInspector]
     private int currentWayPoint = 0;
@@ -15,13 +16,16 @@ public class EnemyBehaviour : MonoBehaviour {
     
     void Start()
     {
-        var path = GameObject.Find(MoveAlong);
-        if (path != null)
+        if (MovementEnabled)
         {
-            Waypoints = new Transform[path.transform.childCount];
-            for (int i = 0; i < Waypoints.Length; i++)
+            var path = GameObject.Find(MoveAlong);
+            if (path != null)
             {
-                Waypoints[i] = path.transform.GetChild(i);
+                Waypoints = new Transform[path.transform.childCount];
+                for (int i = 0; i < Waypoints.Length; i++)
+                {
+                    Waypoints[i] = path.transform.GetChild(i);
+                }
             }
         }
     }
@@ -29,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour {
     void Update()
     {
         // check if we have somewere to walk
-        if (currentWayPoint < this.Waypoints.Length)
+        if (MovementEnabled && (currentWayPoint < this.Waypoints.Length))
         {
             if (targetWayPoint == null)
                 targetWayPoint = Waypoints[currentWayPoint];
@@ -40,7 +44,7 @@ public class EnemyBehaviour : MonoBehaviour {
     private void Move()
     {
         // rotate towards the target
-        transform.LookAt(targetWayPoint.transform); 
+        transform.LookAt(targetWayPoint.transform);
 
         //TODO: Schiffboden zur Erde gerichtet
 
@@ -79,6 +83,7 @@ public class EnemyBehaviour : MonoBehaviour {
     {
         // Dont show anymore
         GetComponent<Renderer>().enabled = false;
+        MovementEnabled = false;
 
         //Play Destruction Animation
         GetComponentInChildren<ParticleSystem>().Play();
