@@ -36,10 +36,7 @@ public class EnemyBehaviour : MonoBehaviour {
     void move()
     {
         // rotate towards the target
-        //transform.LookAt(targetWayPoint.transform); not smooth enough so use this:
-        Vector3 direction = targetWayPoint.transform.position - transform.position;
-        Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 0.02f * MovementSpeed * Time.time);
+        transform.LookAt(targetWayPoint.transform); 
 
         //TODO: Schiffboden zur Erde gerichtet
 
