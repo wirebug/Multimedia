@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
+  m_Scenes: []
+=======
   m_Scenes:
   - enabled: 1
     path: Assets/StartMenu.unity
@@ -20,3 +23,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/WorldBasti.unity
     guid: 7573e76dfd9376d498da6b73cc45d55e
+>>>>>>> 4e13a2bb41c7582b2f35583062b9a3c3ed1f2413
