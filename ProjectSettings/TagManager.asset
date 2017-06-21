@@ -9,6 +9,8 @@ TagManager:
   - HighScore
   - Enemy
   - center
+  - Score
+  - TimeLeft
   layers:
   - Default
   - TransparentFX

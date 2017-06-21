@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class InitGame : MonoBehaviour
+public class InitStartMenu : MonoBehaviour
 {
-	// Use this for initialization
 	void Start ()
     {
         ScoreLogic.Init();
-	}
 
-    private void OnGUI()
-    {
         GameObject lastScoreObj = GameObject.FindWithTag("LastScore");
         GameObject highScoreObj = GameObject.FindWithTag("HighScore");
 
@@ -21,7 +15,7 @@ public class InitGame : MonoBehaviour
             Text lastScoreText = lastScoreObj.GetComponent<Text>();
             if (null != lastScoreText)
             {
-                lastScoreText.text = ScoreLogic.LastScore.ToString();
+                lastScoreText.text = "Last Score: " + ScoreLogic.LastScore;
             }
         }
 
@@ -30,14 +24,8 @@ public class InitGame : MonoBehaviour
             Text highScoreText = highScoreObj.GetComponent<Text>();
             if (null != highScoreText)
             {
-                highScoreText.text = ScoreLogic.HighScore.ToString();
+                highScoreText.text = "Highscore: " + ScoreLogic.HighScore;
             }
         }
     }
-
-    // Update is called once per frame
-    void Update ()
-    {
-		
-	}
 }

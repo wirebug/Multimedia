@@ -1,18 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Shoot : MonoBehaviour
 {
-
     public float ShootRate = 0.75f;
     public float MaxRange = 150f;
     public WaitForSeconds duration = new WaitForSeconds(0.25f);
-
     private LineRenderer line;
-    Camera cam;
-
+    private Camera cam;
     private float canShootAgainTime;
 
     void Start()
