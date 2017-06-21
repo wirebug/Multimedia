@@ -23,11 +23,15 @@ public class TimeLogic : MonoBehaviour
 
     void Update()
     {
-        timeLeft -= Time.deltaTime;
-
-        if (TimeLeft <= 0)
+        if (GetComponent<Renderer>().enabled)
         {
-            SceneManager.LoadScene("StartMenu");
+            timeLeft -= Time.deltaTime;
+
+            if (TimeLeft <= 0)
+            {
+                SceneManager.LoadScene("StartMenu");
+            }
         }
+
     }
 }
