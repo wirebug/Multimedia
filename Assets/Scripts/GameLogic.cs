@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
@@ -46,12 +47,7 @@ public class GameLogic : MonoBehaviour
 
             if (timeLeft <= 10)
             {
-                Color c = timeLeftText.color;
-                c.a = (Mathf.Sin(Time.time * timeLeftTextBlinkSpeed) + 1.0f) * timeLeftTextMaxAlpha;
-                if (c.a <= timeLeftTextMaxAlpha && c.a > timeLeftTextMinAlpha)
-                {
-                    timeLeftText.color = c;
-                }
+                StartCoroutine(BlinkTimeLeftText());
             }
 
             timeLeftText.text = "Time: " + TimeLogic.TimeLeft;
@@ -61,5 +57,19 @@ public class GameLogic : MonoBehaviour
     void OnDestroy()
     {
         ScoreLogic.Terminate();
+    }
+
+    public IEnumerator BlinkTimeLeftText()
+    {
+        while (true)
+        {
+            Color c = timeLeftText.color;
+            c.a = (Mathf.Sin(Time.time * timeLeftTextBlinkSpeed) + 1.0f) * timeLeftTextMaxAlpha;
+            if (c.a <= timeLeftTextMaxAlpha && c.a > timeLeftTextMinAlpha)
+            {
+                timeLeftText.color = c;
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
