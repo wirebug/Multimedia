@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/StartMenu.unity
     guid: 4203eb7302a5e2d468a714abfac0ca31
+<<<<<<< HEAD
+=======
   - enabled: 0
     path: Assets/default.unity
     guid: 307f8be997f5391498751419088a37b1
+>>>>>>> 30130f9460d214ba5461faf4119b8b7302f07b3b
   - enabled: 1
     path: Assets/World.unity
     guid: 7866f23de1bb49540a05f70ff12edad1
+  - enabled: 0
+    path: Assets/default.unity
+    guid: 307f8be997f5391498751419088a37b1
