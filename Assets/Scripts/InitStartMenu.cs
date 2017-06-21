@@ -15,7 +15,7 @@ public class InitStartMenu : MonoBehaviour
             Text lastScoreText = lastScoreObj.GetComponent<Text>();
             if (null != lastScoreText)
             {
-                lastScoreText.text = ScoreLogic.LastScore.ToString();
+                lastScoreText.text = "Last Score: " + ScoreLogic.LastScore;
             }
         }
 
@@ -24,7 +24,7 @@ public class InitStartMenu : MonoBehaviour
             Text highScoreText = highScoreObj.GetComponent<Text>();
             if (null != highScoreText)
             {
-                highScoreText.text = ScoreLogic.HighScore.ToString();
+                highScoreText.text = "Highscore: " + ScoreLogic.HighScore;
             }
         }
     }
