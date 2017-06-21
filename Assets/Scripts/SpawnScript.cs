@@ -1,41 +1,36 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Vuforia;
 
 public class SpawnScript : MonoBehaviour
 {
-    public static int enemiesAlives = 0;
 
     public Transform enemyObject;
     public Transform spawnPoint;
-
     public float timeBetweenWaves = 5f;
+    public float timeBeforeStart = 2f;
+    public int enemiesPerWave = 0;
+    public float timeBetweenEnemySpawn = 2f;
 
-    //Gameduration
-    public float countdown = 2f;
-
-    private int waveIndex = 0;
-
+    public static int enemiesAlives = 0;
     void Update()
     {
-        if (countdown <= 0f)
+        if (timeBeforeStart <= 0f)
         {
             StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            timeBeforeStart = timeBetweenWaves;
         }
 
-        countdown -= Time.deltaTime;
-        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        timeBeforeStart -= Time.deltaTime;
+        timeBeforeStart = Mathf.Clamp(timeBeforeStart, 0f, Mathf.Infinity);
     }
 
     IEnumerator SpawnWave()
     {
-        waveIndex++;
-        for(int i = 0; i<waveIndex; i++)
+
+        for(int i = 0; i<enemiesPerWave; i++)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBetweenEnemySpawn);
         }
     }
 

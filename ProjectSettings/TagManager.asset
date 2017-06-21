@@ -11,6 +11,7 @@ TagManager:
   - center
   - Score
   - TimeLeft
+  - start
   layers:
   - Default
   - TransparentFX
