@@ -1,22 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour {
 
-    public int Health = 100;
-
-    public float MovementSpeed = 4f;
+    public int health = 100;
+    public int scoreOnHit = 5;
+    public int scoreOnDestroy = 30;
+    public float MovementSpeed = 4.0f;
     public string MoveAlong = "Path1";
-    private Transform[] Waypoints;
-
     [HideInInspector]
-    public int currentWayPoint = 0;
-    Transform targetWayPoint;
-
-
-    // Use this for initialization
+    private int currentWayPoint = 0;
+    private Transform[] Waypoints;
+    private Transform targetWayPoint;
+    
     void Start()
     {
         var path = GameObject.Find(MoveAlong);
@@ -30,7 +26,6 @@ public class EnemyBehaviour : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         // check if we have somewere to walk
@@ -38,11 +33,11 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             if (targetWayPoint == null)
                 targetWayPoint = Waypoints[currentWayPoint];
-            move();
+            Move();
         }
     }
 
-    void move()
+    private void Move()
     {
         // rotate towards the target
         transform.LookAt(targetWayPoint.transform); 
@@ -70,11 +65,13 @@ public class EnemyBehaviour : MonoBehaviour {
 
     public void Hit(int damage)
     {
-        Health -= damage;
+        health -= damage;
+        ScoreLogic.Score += scoreOnHit;
         
-        if (Health <= 0)
+        if (health <= 0)
         {
             StartCoroutine(DestroySelf());
+            ScoreLogic.Score += scoreOnDestroy;
         }
     }
 
@@ -85,8 +82,6 @@ public class EnemyBehaviour : MonoBehaviour {
 
         //Play Destruction Animation
         GetComponentInChildren<ParticleSystem>().Play();
-
-        ScoreLogic.LastScore++;
 
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);

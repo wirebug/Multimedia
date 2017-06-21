@@ -1,83 +1,57 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ScoreLogic : MonoBehaviour {
-
-    public static int HighScore = 0;
-    public static int LastScore = 0;
-    private static float timeLeft = 60;
-    public static float TimeLeft
-    {
-        get { return timeLeft; }
-    }
-    private static string lastScoreFileName =  "lastScore.txt";
+public class ScoreLogic : MonoBehaviour
+{
+    private static string lastScoreFileName = "lastScore.txt";
     private static string highScoreFileName = "highScore.txt";
+    private static bool initialized = false;
+
+    public static int Score { get; set; }
+    public static int LastScore { get; private set; }
+    public static int HighScore { get; private set; }
 
     public static void Init()
     {
-        DeSerializeScores();
-    }
+        // Always reset current Score
+        Score = 0;
 
-    void Start()
-    {
-        LastScore = 0;
-        timeLeft = 60;
-    }
-
-    void OnGUI()
-    {
-        float x = Screen.width * 0.9f - Screen.height * 0.02f;
-        float y = Screen.height * 0.05f;
-        var textStyle = new GUIStyle()
+        if (!initialized)
         {
-            fontSize = 50,
-            alignment = TextAnchor.UpperCenter,
-            fontStyle = FontStyle.Bold
-        };
-        textStyle.normal.textColor = Color.white;
-        textStyle.alignment = TextAnchor.MiddleRight;
-        GUI.Label(new Rect(x, y, Screen.width * 0.1f, Screen.height * 0.05f), LastScore.ToString(), textStyle);
-
-        x = Screen.width * 0.9f - Screen.height * 0.02f;
-        y = Screen.height * 0.9f;
-        
-        GUI.Label(new Rect(x, y, Screen.width * 0.1f, Screen.height * 0.05f), Mathf.Max(0, Mathf.Floor(timeLeft)).ToString(), textStyle);
-    }
-
-    // Update is called once per frame
-    void Update () {
-        timeLeft -= Time.deltaTime;
-        
-        if (timeLeft <= 0)
-        {
-            SceneManager.LoadScene("StartMenu");
+            // Only reset LastScore and HighScore (and try to load them from file) on first Init
+            LastScore = 0;
+            HighScore = 0;
+            DeSerializeScores();
+            initialized = true;
         }
-	}
+    }
 
-    void OnDestroy()
+    public static void Terminate()
     {
-        if (LastScore > HighScore)
+        if (initialized)
         {
-            HighScore = LastScore;
-        }
+            LastScore = Score;
 
-        SerializeScores();
+            if (LastScore > HighScore)
+            {
+                HighScore = LastScore;
+            }
+
+            SerializeScores();
+        }
     }
 
     private static void SerializeScores()
     {
-        using (System.IO.StreamWriter file =
+        using (StreamWriter file =
 
-            new System.IO.StreamWriter(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
+            new StreamWriter(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
         {
             file.WriteLine(LastScore);
         }
 
-        using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(Path.Combine(Application.persistentDataPath, highScoreFileName)))
+        using (StreamWriter file =
+            new StreamWriter(Path.Combine(Application.persistentDataPath, highScoreFileName)))
         {
             file.WriteLine(HighScore);
         }
@@ -85,10 +59,10 @@ public class ScoreLogic : MonoBehaviour {
 
     private static void DeSerializeScores()
     {
-        if (IsFileValid(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
+        if (File.Exists(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
         {
-            using (System.IO.StreamReader file =
-                new System.IO.StreamReader(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
+            using (StreamReader file =
+                new StreamReader(Path.Combine(Application.persistentDataPath, lastScoreFileName)))
             {
                 string lastScoreString = file.ReadLine();
                 int lastScoreValue = 0;
@@ -100,10 +74,10 @@ public class ScoreLogic : MonoBehaviour {
             }
         }
 
-        if (IsFileValid(Path.Combine(Application.persistentDataPath, highScoreFileName)))
+        if (File.Exists(Path.Combine(Application.persistentDataPath, highScoreFileName)))
         {
-            using (System.IO.StreamReader file =
-                new System.IO.StreamReader(Path.Combine(Application.persistentDataPath, highScoreFileName)))
+            using (StreamReader file =
+                new StreamReader(Path.Combine(Application.persistentDataPath, highScoreFileName)))
             {
                 string highScoreString = file.ReadLine();
                 int highScoreValue = 0;
@@ -114,15 +88,5 @@ public class ScoreLogic : MonoBehaviour {
                 }
             }
         }
-    }
-
-    private static bool IsFileValid(string filePath)
-    {
-        if (File.Exists(filePath))
-        {
-            return false;
-        }
-
-        return true;
     }
 }
