@@ -8,7 +8,7 @@ public class Spin : MonoBehaviour {
 	[Tooltip("Spin: Yes or No")]
 	public bool SelfSpin;
 	[Tooltip("Spin the parent object instead of the object this script is attached to")]
-	public bool SpinAroundParent;
+	public bool ParentSpin;
 	public float SelfSpinSpeed = 10f;
     public float ParentSpinSpeed = 10f;
 
@@ -37,7 +37,7 @@ public class Spin : MonoBehaviour {
 			}
 		}
 
-        if (SpinAroundParent)
+        if (ParentSpin)
         {
             if (clockwise)
             {
