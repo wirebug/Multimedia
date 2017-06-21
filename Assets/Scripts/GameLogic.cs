@@ -8,6 +8,9 @@ public class GameLogic : MonoBehaviour
     [HideInInspector]
     private Text scoreText;
     private Text timeLeftText;
+    private float timeLeftTextMaxAlpha;
+    private float timeLeftTextMinAlpha = 0.1f;
+    private float timeLeftTextBlinkSpeed = 4.0f;
 
     void Start()
     {
@@ -23,6 +26,10 @@ public class GameLogic : MonoBehaviour
         if (null != timeLeftObj)
         {
             timeLeftText = timeLeftObj.GetComponent<Text>();
+            if (null != timeLeftText)
+            {
+                timeLeftTextMaxAlpha = timeLeftText.color.a;
+            }
         }
     }
 
@@ -35,6 +42,18 @@ public class GameLogic : MonoBehaviour
 
         if (null != timeLeftText)
         {
+            int timeLeft = (int) TimeLogic.TimeLeft;
+
+            if (timeLeft <= 10)
+            {
+                Color c = timeLeftText.color;
+                c.a = (Mathf.Sin(Time.time * timeLeftTextBlinkSpeed) + 1.0f) * timeLeftTextMaxAlpha;
+                if (c.a <= timeLeftTextMaxAlpha && c.a > timeLeftTextMinAlpha)
+                {
+                    timeLeftText.color = c;
+                }
+            }
+
             timeLeftText.text = "Time: " + TimeLogic.TimeLeft;
         }
     }
