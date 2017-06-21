@@ -32,13 +32,13 @@ public class EnemyBehaviour : MonoBehaviour {
 
         SpawnScript.enemiesAlives--;
     }
-    public Transform goal;
+    //public Transform goal;
 
-    void Start()
-    {
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position;
-    }
+    //void Start()
+    //{
+    //    NavMeshAgent agent = GetComponent<NavMeshAgent>();
+    //    agent.destination = goal.position;
+    //}
     /*public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;

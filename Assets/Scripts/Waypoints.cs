@@ -32,8 +32,9 @@ public class Waypoints : MonoBehaviour {
     void move()
     {
         // rotate towards the target
-        
+
         // Schiffboden zur Erdegerichtet
+        transform.position = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
 
 
         // move towards the target
