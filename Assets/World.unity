@@ -6763,6 +6763,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 330
+  MovementSpeed: 4
+  Waypoints: []
+  currentWayPoint: 0
 --- !u!1 &486828777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7079,7 +7082,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -498836178
+  randomSeed: 721930516
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10208,18 +10211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 33
---- !u!114 &812827312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 812827309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60aa7e7e32de4814097678272379c9e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPointList:
+  MovementSpeed: 0.5
+  Waypoints:
   - {fileID: 10896008}
   - {fileID: 840262990}
   - {fileID: 1592515039}
@@ -10229,7 +10222,6 @@ MonoBehaviour:
   - {fileID: 1132879032}
   - {fileID: 920456414}
   currentWayPoint: 0
-  speed: 0.2
 --- !u!64 &812827313
 MeshCollider:
   m_ObjectHideFlags: 0
