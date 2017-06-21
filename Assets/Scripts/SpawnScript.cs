@@ -10,6 +10,7 @@ public class SpawnScript : MonoBehaviour
     public float timeBeforeStart = 2f;
     public int enemiesPerWave = 0;
     public float timeBetweenEnemySpawn = 2f;
+    public int maximumEnemies = 10;
 
     public static int enemiesAlives = 0;
     void Update()
@@ -36,7 +37,10 @@ public class SpawnScript : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
-        enemiesAlives++;
+        if (enemiesAlives < maximumEnemies)
+        {
+            Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
+            enemiesAlives++;
+        }
     }
 }
