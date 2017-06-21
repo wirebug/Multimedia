@@ -36,7 +36,7 @@ public class SpawnScript : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
         enemiesAlives++;
     }
 }
