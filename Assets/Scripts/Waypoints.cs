@@ -32,9 +32,12 @@ public class Waypoints : MonoBehaviour {
     void move()
     {
         // rotate towards the target
-
-        // Schiffboden zur Erdegerichtet
-        transform.position = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
+        //transform.LookAt(targetWayPoint.transform); not smooth enough so use this:
+        Vector3 direction = targetWayPoint.transform.position - transform.position;
+        Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 0.02f * speed * Time.time);
+        
+        //TODO: Schiffboden zur Erde gerichtet
 
 
         // move towards the target
