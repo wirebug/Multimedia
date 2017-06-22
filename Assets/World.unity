@@ -4362,6 +4362,7 @@ MonoBehaviour:
     type: 2}
   FastEnemyObject: {fileID: 4667043468277666, guid: 670c2210ecd38fe41a87cc4acc577ead,
     type: 2}
+  Paths: {fileID: 1907397267}
   timeBetweenWaves: 10
   timeBeforeStart: 0
   enemiesPerWave: 3

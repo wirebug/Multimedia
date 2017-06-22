@@ -7,6 +7,7 @@ public class SpawnScript : MonoBehaviour
     public Transform strongEnemyObject;
     public Transform NormalEnemyObject;
     public Transform FastEnemyObject;
+    public Transform Paths;
     public float timeBetweenWaves = 10f;
     public float timeBeforeStart = 0f;
     public int enemiesPerWave = 2;
@@ -63,8 +64,7 @@ public class SpawnScript : MonoBehaviour
                     break;
             }
 
-            var pathName = "Path" + Random.Range(1, 5); 
-            var path = GameObject.Find(pathName);
+            var path = Paths.transform.GetChild(Random.Range(0, Paths.transform.childCount));
             var spawnPoint = path.transform.GetChild(Random.Range(0, path.transform.childCount));
 
 
