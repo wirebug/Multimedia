@@ -4,7 +4,9 @@ using UnityEngine;
 public class SpawnScript : MonoBehaviour
 {
 
-    public Transform enemyObject;
+    public Transform strongEnemyObject;
+    public Transform NormalEnemyObject;
+    public Transform FastEnemyObject;
     public float timeBetweenWaves = 10f;
     public float timeBeforeStart = 0f;
     public int enemiesPerWave = 2;
@@ -37,9 +39,25 @@ public class SpawnScript : MonoBehaviour
     {
         if (enemiesAlives < maximumEnemies)
         {
-            var pathName = "Path" + Random.Range(1, 4); 
+            Transform enemyObject;
+            var r = Random.Range(1, 10);
+            switch (r)
+            {
+                case 1:
+                    enemyObject = strongEnemyObject;
+                    break;
+                case 2:
+                    enemyObject = FastEnemyObject;
+                    break;
+                default:
+                    enemyObject = NormalEnemyObject;
+                    break;
+            }
+
+            var pathName = "Path" + Random.Range(1, 5); 
             var path = GameObject.Find(pathName);
             var spawnPoint = path.transform.GetChild(Random.Range(0, path.transform.childCount));
+
 
             var enemyTransform = Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
             EnemyBehaviour enemy = enemyTransform.GetComponent<EnemyBehaviour>();

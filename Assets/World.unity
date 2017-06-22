@@ -4356,7 +4356,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38237aa58be9c0a42a846ec05cb3c620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyObject: {fileID: 4630031629995474, guid: e7a8e7917bd35fd45982444480906097,
+  strongEnemyObject: {fileID: 4630031629995474, guid: e7a8e7917bd35fd45982444480906097,
+    type: 2}
+  NormalEnemyObject: {fileID: 4905335708841100, guid: 1a6fde913446eb9408a4ba01431b66bd,
+    type: 2}
+  FastEnemyObject: {fileID: 4667043468277666, guid: 670c2210ecd38fe41a87cc4acc577ead,
     type: 2}
   timeBetweenWaves: 10
   timeBeforeStart: 0
@@ -5949,7 +5953,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 656176630
+  randomSeed: 1481932647
   InitialModule:
     serializedVersion: 3
     enabled: 1
