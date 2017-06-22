@@ -32,7 +32,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Update()
     {
-        // check if we have somewere to walk
+        // check if we have somewere to move
         if (MovementEnabled && (currentWayPoint < this.Waypoints.Length))
         {
             if (targetWayPoint == null)
@@ -41,10 +41,13 @@ public class EnemyBehaviour : MonoBehaviour {
         }
     }
 
+
     private void Move()
     {
         // rotate towards the target
-        transform.LookAt(targetWayPoint.transform);
+        //transform.LookAt(targetWayPoint.transform); not smooth enough so use this:
+        var rotate = Quaternion.LookRotation(targetWayPoint.transform.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * MovementSpeed * 4);
 
         //TODO: Schiffboden zur Erde gerichtet
 
