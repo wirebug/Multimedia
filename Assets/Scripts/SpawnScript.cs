@@ -39,7 +39,13 @@ public class SpawnScript : MonoBehaviour
     {
         if (enemiesAlives < maximumEnemies)
         {
-            Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
+            var enemyTransform = Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
+            EnemyBehaviour enemy = enemyTransform.GetComponent<EnemyBehaviour>();
+            if (enemy != null)
+            {
+                enemy.MoveAlong = "Path" + Random.Range(1, 4);
+            }
+
             enemiesAlives++;
         }
     }

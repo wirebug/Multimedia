@@ -8,16 +8,10 @@ public class EnemyBehaviour : MonoBehaviour {
     public int scoreOnDestroy = 30;
     public float MovementSpeed = 4.0f;
     public bool MovementEnabled = true;
-    public string MoveAlong = "Path1";
-    [HideInInspector]
-    private int currentWayPoint = 0;
-    private Transform[] Waypoints;
-    private Transform targetWayPoint;
-    
-    void Start()
-    {
-        if (MovementEnabled)
-        {
+    public string MoveAlong {
+        get { return mMoveAlong; }
+        set {
+            mMoveAlong = value;
             var path = GameObject.Find(MoveAlong);
             if (path != null)
             {
@@ -28,6 +22,16 @@ public class EnemyBehaviour : MonoBehaviour {
                 }
             }
         }
+    }
+    private string mMoveAlong = "Path1";
+    [HideInInspector]
+    private int currentWayPoint = 0;
+    private Transform[] Waypoints;
+    private Transform targetWayPoint;
+    
+    void Start()
+    {
+
     }
 
     void Update()
