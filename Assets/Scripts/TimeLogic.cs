@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vuforia;
 
 public class TimeLogic : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class TimeLogic : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<Renderer>().enabled)
+        if (IsRunning())
         {
             timeLeft -= Time.deltaTime;
 
@@ -33,5 +35,11 @@ public class TimeLogic : MonoBehaviour
             }
         }
 
+    }
+
+    public static bool IsRunning()
+    {
+        // only run while we have an image tracked
+        return TrackerManager.Instance.GetStateManager().GetActiveTrackableBehaviours().GetEnumerator().MoveNext();
     }
 }

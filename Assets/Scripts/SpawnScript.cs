@@ -14,15 +14,24 @@ public class SpawnScript : MonoBehaviour
     public int maximumEnemies = 7;
 
     public static int enemiesAlives = 0;
+
+    public static void Init()
+    {
+
+    }
+
     void Update()
     {
-        if (timeBeforeStart <= 0f)
+        if (TimeLogic.IsRunning())
         {
-            StartCoroutine(SpawnWave());
-            timeBeforeStart = timeBetweenWaves;
-        }
+            if (timeBeforeStart <= 0f)
+            {
+                StartCoroutine(SpawnWave());
+                timeBeforeStart = timeBetweenWaves;
+            }
 
-        timeBeforeStart -= Time.deltaTime;
+            timeBeforeStart -= Time.deltaTime;
+        }
     }
 
     IEnumerator SpawnWave()
