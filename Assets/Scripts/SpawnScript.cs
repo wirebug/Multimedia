@@ -5,12 +5,11 @@ public class SpawnScript : MonoBehaviour
 {
 
     public Transform enemyObject;
-    public Transform spawnPoint;
-    public float timeBetweenWaves = 5f;
-    public float timeBeforeStart = 2f;
-    public int enemiesPerWave = 0;
+    public float timeBetweenWaves = 10f;
+    public float timeBeforeStart = 0f;
+    public int enemiesPerWave = 2;
     public float timeBetweenEnemySpawn = 2f;
-    public int maximumEnemies = 10;
+    public int maximumEnemies = 7;
 
     public static int enemiesAlives = 0;
     void Update()
@@ -22,7 +21,6 @@ public class SpawnScript : MonoBehaviour
         }
 
         timeBeforeStart -= Time.deltaTime;
-        timeBeforeStart = Mathf.Clamp(timeBeforeStart, 0f, Mathf.Infinity);
     }
 
     IEnumerator SpawnWave()
@@ -39,11 +37,15 @@ public class SpawnScript : MonoBehaviour
     {
         if (enemiesAlives < maximumEnemies)
         {
+            var pathName = "Path" + Random.Range(1, 4); 
+            var path = GameObject.Find(pathName);
+            var spawnPoint = path.transform.GetChild(Random.Range(0, path.transform.childCount));
+
             var enemyTransform = Instantiate(enemyObject, spawnPoint.position, spawnPoint.rotation, transform);
             EnemyBehaviour enemy = enemyTransform.GetComponent<EnemyBehaviour>();
             if (enemy != null)
             {
-                enemy.MoveAlong = "Path" + Random.Range(1, 4);
+                enemy.MoveAlong = path.transform;
             }
 
             enemiesAlives++;

@@ -4358,12 +4358,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyObject: {fileID: 4630031629995474, guid: e7a8e7917bd35fd45982444480906097,
     type: 2}
-  spawnPoint: {fileID: 470185664}
   timeBetweenWaves: 10
-  timeBeforeStart: 2
+  timeBeforeStart: 0
   enemiesPerWave: 3
   timeBetweenEnemySpawn: 2
-  maximumEnemies: 10
+  maximumEnemies: 7
 --- !u!4 &353097439 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4822066670911882, guid: 7b14dd94c3cc020489f17e9bb899d2be,
