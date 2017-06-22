@@ -14,11 +14,12 @@ public class SpawnScript : MonoBehaviour
     public float timeBetweenEnemySpawn = 2f;
     public int maximumEnemies = 7;
 
+    [HideInInspector]
     public static int enemiesAlives = 0;
 
-    public static void Init()
+    private void Start()
     {
-
+        enemiesAlives = 0;
     }
 
     void Update()
