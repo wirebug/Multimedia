@@ -94,6 +94,9 @@ public class EnemyBehaviour : MonoBehaviour {
         //Play Destruction Animation
         GetComponentInChildren<ParticleSystem>().Play();
 
+        // Stop trail
+        GetComponentsInChildren<ParticleSystem>()[1].Stop();
+
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
 
