@@ -8,7 +8,21 @@ public class EnemyBehaviour : MonoBehaviour {
     public int scoreOnDestroy = 30;
     public float MovementSpeed = 4.0f;
     public bool MovementEnabled = true;
-    public string MoveAlong = "Path1";
+    public Transform MoveAlong {
+        get { return mMoveAlong; }
+        set {
+            mMoveAlong = value;
+            if (mMoveAlong != null)
+            {
+                Waypoints = new Transform[mMoveAlong.transform.childCount];
+                for (int i = 0; i < Waypoints.Length; i++)
+                {
+                    Waypoints[i] = mMoveAlong.transform.GetChild(i);
+                }
+            }
+        }
+    }
+    private Transform mMoveAlong = null;
     [HideInInspector]
     private int currentWayPoint = 0;
     private Transform[] Waypoints;
@@ -16,23 +30,12 @@ public class EnemyBehaviour : MonoBehaviour {
     
     void Start()
     {
-        if (MovementEnabled)
-        {
-            var path = GameObject.Find(MoveAlong);
-            if (path != null)
-            {
-                Waypoints = new Transform[path.transform.childCount];
-                for (int i = 0; i < Waypoints.Length; i++)
-                {
-                    Waypoints[i] = path.transform.GetChild(i);
-                }
-            }
-        }
+
     }
 
     void Update()
     {
-        // check if we have somewere to walk
+        // check if we have somewere to move
         if (MovementEnabled && (currentWayPoint < this.Waypoints.Length))
         {
             if (targetWayPoint == null)
@@ -41,10 +44,13 @@ public class EnemyBehaviour : MonoBehaviour {
         }
     }
 
+
     private void Move()
     {
         // rotate towards the target
-        transform.LookAt(targetWayPoint.transform);
+        //transform.LookAt(targetWayPoint.transform); not smooth enough so use this:
+        var rotate = Quaternion.LookRotation(targetWayPoint.transform.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * MovementSpeed * 4);
 
         //TODO: Schiffboden zur Erde gerichtet
 
@@ -87,6 +93,9 @@ public class EnemyBehaviour : MonoBehaviour {
 
         //Play Destruction Animation
         GetComponentInChildren<ParticleSystem>().Play();
+
+        // Stop trail
+        GetComponentsInChildren<ParticleSystem>()[1].Stop();
 
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
