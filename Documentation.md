@@ -1,7 +1,7 @@
 # Documentation
 
 ## Project structure
-Our project is splitted into two scenes. One for the game menu (gamemenu.scene) and one for the game world (world.scene)
+Our project is splitted into two scenes. One for the game menu (*gamemenu.scene*) and one for the game world (*world.scene*)
 
 ### World Scene
 - __ARCamera__ is holding the perspective of the user looking on the 3D World. Thats why it contains the
@@ -24,6 +24,6 @@ Our project is splitted into two scenes. One for the game menu (gamemenu.scene) 
 
 - The __ScoreLogicScript__ itself is not attached to anything, but is used by the **_GameLogicScript_** and the **_ShootScript_**. It holds the *current score* of the current game session, the *last score* of the last game session and the *highest score* of all game sessions. Also it __serializes__ the scores (*last* and *highest*) when the game is exited and __deserializes__ the saved scores on starting the game.
 
-The scenes are directly within in the `assets` folder. 
-All scripts can be found in the in `assets/scripts`. 
-The prefabs for the different ship types are located in `assets/prefabs. 
+The scenes are directly within in the `assets` folder.  
+All scripts can be found in the in `assets/scripts`.  
+The prefabs for the different ship types are located in `assets/prefabs`.
