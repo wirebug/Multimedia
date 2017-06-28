@@ -23,5 +23,4 @@ Move around the table to see all spaceships and to get'em all.
 ## Development
 1. Clone this repo.
 2. Import project into Unity
-3. Open World oder GameMenu Scene
-4. [Checkout Dokumentation for more information](Documentation.md)
+3. Checkout [Dokumentation](Documentation.md) for more information
