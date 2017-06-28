@@ -4,13 +4,24 @@
 Our project is splitted into two scenes. One for the game menu (gamemenu.scene) and one for the game world (world.scene)
 
 ### World Scene
-AR Camera is holding the perspective of the user looking on the 3D World. Thats why it contains the Camera (camera of the user device) and the shoot controller which kept the crossair and shooting animation logic.
+- __ARCamera__ is holding the perspective of the user looking on the 3D World. Thats why it contains the
+  - __Camera__ (camera of the user device)
+  - __ShootController__, which contains the
+    - __ShootScript__, which defines the shooting logic (incl. animation) and talks to the **_ScoreLogicScript_**
+  - __CrosshairScript__, which draws the crooshair on the middle of the screen
+  - __GameLogicScript__, which initializes the **_ScoreLogicScript_** and manages a blink animation for the **_TimeLeft_**, if it falls under 10 sec.
 
-The ImageTarget represents the qr code needed to scan for displaying the 3d model in the AR-World. Thats why its holding our Earth model.
-Earth model is holding the spawn script, which is responsible for spawning enemy prefabs randomly on predefined paths. You can also defined how many enemies are spawned at maximum or which duration is between each enemy wave.
-Paths are defined as simple sets of 3D-Vectors, which for easier handling as an icon attached in the modeling enviroment.
-On the time logic script you can configure the duration of a game session.
+- __ImageTarget__ represents the QR code needed to scan for displaying the 3D model in the AR-World. Thats why it's holding our
+  - __Earth__ model. To the earth model attached are:
+    - __SpawnScript__, which is responsible for spawning enemy prefabs randomly on predefined paths. You can also defined how many enemies are spawned at maximum or which duration is between each enemy wave.
+    - __TimeLogicScript__, where you can configure the duration of a game session.
+  - __Paths__ are defined as simple sets of 3D-Vectors, which for easier handling as an icon attached in the modeling enviroment.
 
-Canvas is the UI. The BackButton for going back to the main menu is here. Furthermore you can find the score and the time is left for the game session.
+- __Canvas__ is the UI. It contains the
+  - __BackButton__ for going back to the main menu
+  - __Score__ (text element for the current score)
+  - __TimeLeft__ (text element for the time left in the current game session)
 
-All scrips can be found in the project assets "scripts" folder.
+- The __ScoreLogicScript__ itself is not attached to anything, but is used by the **_GameLogicScript_** and the **_ShootScript_**. It holds the *current score* of the current game session, the *last score* of the last game session and the *highest score* of all game sessions. Also it __serializes__ the scores (*last* and *highest*) when the game is exited and __deserializes__ the saved scores on starting the game.
+
+All scripts can be found in the project `assets/scripts` folder.
