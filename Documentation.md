@@ -26,16 +26,16 @@ All scripts can be found in the in `assets/scripts`.
 The prefabs for the different ship types are located in `assets/prefabs`.
 
 ### ScoreLogicScript
-- The __ScoreLogicScript__ itself is not attached to anything, but is used by the **_GameLogicScript_** and the **_ShootScript_**. It holds the *current score* of the current game session, the *last score* of the last game session and the *highest score* of all game sessions. Also it __serializes__ the scores (*last* and *highest*) when the game is exited and __deserializes__ the saved scores on starting the game.
+- The [__ScoreLogicScript__](/Assets/Scripts/ScoreLogic.cs) itself is not attached to anything, but is used by the [**_GameLogicScript_**](/Assets/Scripts/GameLogic.cs) and the [**_ShootScript_**](/Assets/Scripts/Shoot.cs). It holds the *current score* of the current game session, the *last score* of the last game session and the *highest score* of all game sessions. Also it [__serializes__](/Assets/Scripts/ScoreLogic.cs#L44) the scores (*last* and *highest*) when the game is exited and [__deserializes__](/Assets/Scripts/ScoreLogic.cs#L60) the saved scores on starting the game.
 
 ### Game Menu Scene
 - __SF Scene Elements__ is holding the camera for the view on the start menu as well as the background of the menu
 - __Canvas__ within this are all elements for interaction and information
-  - __InitStartMenuScript__: Initializes the *__ScoreLogicScript__* to load (deserialize) previously saved (serialized) scores
+  - [__InitStartMenuScript__](/Assets/Scripts/InitStartMenu.cs): Initializes the [**_ScoreLogicScript_**](/Assets/Scripts/ScoreLogic.cs) to load (deserialize) previously saved (serialized) scores
   - __MainMenuPanel__ includes the buttons for Start, Credits and Exit
   - __CreditsPanel__ is activated when clicked on "Credits" and shows all names of the developers
-  - __Scores__ displays the last and the high score from the *__ScoreLogicScript__*
+  - __Scores__ displays the last and the high score from the [**_ScoreLogicScript_**](/Assets/Scripts/ScoreLogic.cs)
 
-The scripts and textures for the menu are located in `asset/game menu`
+The scripts and textures for the menu are located in [assets/game menu](/Assets/Game%20Menu)
 
-Both scenes are directly within the `assets` folder.  
+Both scenes are directly within the [assets](/Assets) folder.  
