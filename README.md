@@ -1,10 +1,6 @@
 # Multimedia
 AR Multimedia Project for FH Dortmund
 
-## Setup
-Unity 5.6.1
-Vulforia 6.2
-
 ## How to Play:
 
 1. [Download](https://fh-dortmund.sciebo.de/index.php/s/jGPy8FtMlOyYCoE) and install the Multimedia_Shoot_AR on your android device.
@@ -23,5 +19,4 @@ Move around the table to see all spaceships and to get'em all.
 ## Development
 1. Clone this repo.
 2. Import project into Unity
-3. Open World oder GameMenu Scene
-4. Build project for Android.
+3. Checkout [Dokumentation](Documentation.md) for more information
