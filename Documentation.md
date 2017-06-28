@@ -30,10 +30,11 @@ The prefabs for the different ship types are located in `assets/prefabs`.
 
 ### Game Menu Scene
 - __SF Scene Elements__ is holding the camera for the view on the start menu as well as the background of the menu
-- __Canvas__ within this are all elements for interaction and information 
+- __Canvas__ within this are all elements for interaction and information
+  - __InitStartMenuScript__: Initializes the *__ScoreLogicScript__* to load (deserialize) previously saved (serialized) scores
   - __MainMenuPanel__ includes the buttons for Start, Credits and Exit
   - __CreditsPanel__ is activated when clicked on "Credits" and shows all names of the developers
-  - __Scores__ loads the last and the high score from the `ScoreLogicScript` and displays it
+  - __Scores__ displays the last and the high score from the *__ScoreLogicScript__*
 
 The scripts and textures for the menu are located in `asset/game menu`
 
