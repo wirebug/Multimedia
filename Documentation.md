@@ -22,8 +22,11 @@ Our project is splitted into two scenes. One for the game menu (*gamemenu.scene*
   - __Score__ (text element for the current score)
   - __TimeLeft__ (text element for the time left in the current game session)
 
-- The __ScoreLogicScript__ itself is not attached to anything, but is used by the **_GameLogicScript_** and the **_ShootScript_**. It holds the *current score* of the current game session, the *last score* of the last game session and the *highest score* of all game sessions. Also it __serializes__ the scores (*last* and *highest*) when the game is exited and __deserializes__ the saved scores on starting the game.
+All scripts can be found in the in `assets/scripts`.  
+The prefabs for the different ship types are located in `assets/prefabs`.
 
+### ScoreLogicScript
+- The __ScoreLogicScript__ itself is not attached to anything, but is used by the **_GameLogicScript_** and the **_ShootScript_**. It holds the *current score* of the current game session, the *last score* of the last game session and the *highest score* of all game sessions. Also it __serializes__ the scores (*last* and *highest*) when the game is exited and __deserializes__ the saved scores on starting the game.
 
 ### Game Menu Scene
 - __SF Scene Elements__ is holding the camera for the view on the start menu as well as the background of the menu
@@ -32,6 +35,6 @@ Our project is splitted into two scenes. One for the game menu (*gamemenu.scene*
   - __CreditsPanel__ is activated when clicked on "Credits" and shows all names of the developers
   - __Scores__ loads the last and the high score from the `ScoreLogicScript` and displays it
 
-The scenes are directly within in the `assets` folder.  
-All scripts can be found in the in `assets/scripts`.  
-The prefabs for the different ship types are located in `assets/prefabs`.
+The scripts and textures for the menu are located in `asset/game menu`
+
+Both scenes are directly within the `assets` folder.  
