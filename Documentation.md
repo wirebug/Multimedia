@@ -18,6 +18,7 @@ Our project is splitted into two scenes. One for the game menu (*gamemenu.scene*
 - __ImageTarget__ represents the QR code needed to scan for displaying the 3D model in the AR-World. Thats why it's holding our
   - __Earth__ model. To the earth model attached are:
     - [__SpawnScript__](Assets/Scripts/SpawnScript.cs), which is responsible for spawning enemy prefabs randomly on predefined paths. You can also defined how many enemies are spawned at maximum or which duration is between each enemy wave.
+      - [__EnemyBehaviour__](Assets/Scripts/EnemyBehaviour.cs) is attached to the prefabs of the spawned enemies. It gives the enemies a health pool and controls their movement along the path. Also it controls how they behave when they get hit.    
     - [__TimeLogicScript__](Assets/Scripts/TimeLogic.cs), where you can configure the duration of a game session.
   - __Paths__ are defined as simple sets of 3D-Vectors, which for easier handling as an icon attached in the modeling enviroment.
 
