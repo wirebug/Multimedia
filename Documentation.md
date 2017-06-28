@@ -1,5 +1,9 @@
 # Documentation
 
+## Setup
+Unity 5.6.1
+Vulforia 6.2
+
 ## Project structure
 Our project is splitted into two scenes. One for the game menu (*gamemenu.scene*) and one for the game world (*world.scene*)
 
